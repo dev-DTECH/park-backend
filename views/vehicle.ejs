@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ParkBackend | Vehicle</title>
+</head>
+<body>
+<h1>ParkBackend | Vehicle</h1>
+<table>
+    <tr>
+        <td><a href="/">/</a></td>
+        <td><a href="/auth">/auth</a></td>
+        <td><a href="/auth/logout">/auth/logout</a></td>
+        <td><a href="/vehicle">/vehicle</a></td>
+        <td><a href="/log">/log</a></td>
+    </tr>
+</table>
+<form action="/vehicle/add/" method="post">
+    <fieldset>
+        <legend>Add Vehicle</legend>
+        <label for="vehicle-number">Vehicle Number - </label><input type="text" id="vehicle-number" name="vehicleNumber"
+                                                                    required><br/><br/>
+        <input type="submit" value="Add Vehicle">
+    </fieldset>
+</form>
+<table>
+    <tr>
+        <th>vehicleId</th>
+        <th>vehicleNumber</th>
+        <th>userId</th>
+        <th>delete</th>
+    </tr>
+    <% for(v of vehicle){ %>
+    <tr>
+        <td><%= v.vehicleId %></td>
+        <td><%= v.vehicleNumber %></td>
+        <td><%= v.userId %></td>
+        <td>
+            <form action="/vehicle/delete" method="post">
+                <input type="hidden" name="vehicleId" value="<%= v.vehicleId %>">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+</body>
+<script>
+
+</script>
+</html>

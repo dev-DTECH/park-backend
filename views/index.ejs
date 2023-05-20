@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>ParkBackend | Home</h1>
+<table>
+    <tr>
+        <td><a href="/">/</a></td>
+        <td><a href="/auth">/auth</a></td>
+        <td><a href="/auth/logout">/auth/logout</a></td>
+        <td><a href="/vehicle">/vehicle</a></td>
+        <td><a href="/log">/log</a></td>
+    </tr>
+</table>
+<% if (locals.user) { %>
+<h3>Welcome <%= user.name %>!</h3>
+<% } else{ %>
+    <h3>Logged out!</h3>
+<% } %>
+</body>
+</html>
