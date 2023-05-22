@@ -23,7 +23,17 @@
         <legend>Add Vehicle</legend>
         <label for="vehicle-number">Vehicle Number - </label><input type="text" id="vehicle-number" name="vehicleNumber"
                                                                     required><br/><br/>
-        <input type="submit" value="Add Vehicle">
+        <label>
+            Parking Spot ID -
+            <select name="parkingSpotId">
+                <% for(p of parkingSpotId){ %>
+                    <option value="<%= p.parkingSpotId %>"><%= p.parkingSpotId %></option>
+                <% } %>
+
+            </select>
+        </label>
+        <input type="submit" value="/vehicle/add">
+
     </fieldset>
 </form>
 <table>
@@ -34,17 +44,17 @@
         <th>delete</th>
     </tr>
     <% for(v of vehicle){ %>
-    <tr>
-        <td><%= v.vehicleId %></td>
-        <td><%= v.vehicleNumber %></td>
-        <td><%= v.userId %></td>
-        <td>
-            <form action="/vehicle/delete" method="post">
-                <input type="hidden" name="vehicleId" value="<%= v.vehicleId %>">
-                <input type="submit" value="Delete">
-            </form>
-        </td>
-    </tr>
+        <tr>
+            <td><%= v.vehicleId %></td>
+            <td><%= v.vehicleNumber %></td>
+            <td><%= v.userId %></td>
+            <td>
+                <form action="/vehicle/delete" method="post">
+                    <input type="hidden" name="vehicleId" value="<%= v.vehicleId %>">
+                    <input type="submit" value="/vehicle/delete">
+                </form>
+            </td>
+        </tr>
     <% } %>
 </table>
 </body>

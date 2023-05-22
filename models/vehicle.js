@@ -8,8 +8,7 @@ const Vehicle = sequelize.define('Vehicle',{
     },
     vehicleNumber: DataTypes.STRING,
     userId: {
-        type: DataTypes.INTEGER,
-
+        type: DataTypes.UUID,
         references:{
             model: 'Users',
             key: 'userId'
@@ -17,4 +16,4 @@ const Vehicle = sequelize.define('Vehicle',{
     }
 })
 
-module.exports = Vehicle
+exports.VehicleModel = Vehicle

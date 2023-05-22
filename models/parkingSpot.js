@@ -1,13 +1,12 @@
 const sequelize = require("../db");
 const {DataTypes} = require("sequelize");
-const Log = sequelize.define('ParingSpot',{
+const ParkingSpotModel = sequelize.define('ParkingSpot',{
     parkingSpotId:{
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey:true
     },
     name: DataTypes.STRING,
     address: DataTypes.STRING
 })
-
-module.exports = Log
+exports.ParkingSpotModel = ParkingSpotModel

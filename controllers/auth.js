@@ -46,12 +46,12 @@ module.exports = {
     },
     register: {
         post: async (req, res) => {
-            const oldUser = await User.findOne({
+            const isUserRegistered = await User.findOne({
                 where: {
                     mobileNumber: req.body.mobileNumber,
                 }
             })
-            if(oldUser){
+            if(isUserRegistered){
                 return res.status(409).json({ error : "User already exist" })
             }
             // console.log(req.body)

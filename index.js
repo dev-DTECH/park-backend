@@ -6,17 +6,23 @@ const authRouter = require('./routes/auth')
 const vehicleRouter = require('./routes/vehicle')
 const sequelize = require('./db')
 const User = require('./models/user')
-const Vehicle = require('./models/vehicle')
+const {VehicleModel} = require("./models/vehicle");
+const {ParkingSpotModel} = require("./models/parkingSpot");
+const {logRouter} = require("./routes/log");
+const {LogModel} = require("./models/log");
 
-User.hasMany(Vehicle,{
-    foreignKey: 'userId'
+sequelize.sync(
+    {force:true}
+)
+.then(async result => {
+    // console.log(result)
+    for (let i = 0; i < 100; i++) {
+        await ParkingSpotModel.create({
+            name: `parking spot name ${i}`,
+            address: `parking spot address ${i}`
+        })
+    }
 })
-Vehicle.belongsTo(User,{
-    foreignKey: 'userId'
-})
-
-sequelize.sync()
-// .then(result => console.log(result))
 // .catch(err => console.log(err))
 
 
@@ -31,6 +37,7 @@ app.set('view engine','ejs')
 app.use('/',homeRouter)
 app.use('/auth',authRouter)
 app.use('/vehicle',vehicleRouter)
+app.use('/log',logRouter)
 
 app.listen(PORT,()=>{
     console.log(`Live on http://localhost:${PORT}`)

@@ -8,7 +8,7 @@
     <title>ParkBackend | Vehicle</title>
 </head>
 <body>
-<h1>ParkBackend | Vehicle</h1>
+<h1>ParkBackend | Log</h1>
 <table>
     <tr>
         <td><a href="/">/</a></td>
@@ -18,31 +18,26 @@
         <td><a href="/log">/log</a></td>
     </tr>
 </table>
-<form action="/vehicle/add/" method="post">
-    <fieldset>
-        <legend>Add Vehicle</legend>
-        <label for="vehicle-number">Vehicle Number - </label><input type="text" id="vehicle-number" name="vehicleNumber"
-                                                                    required><br/><br/>
-        <input type="submit" value="Add Vehicle">
-    </fieldset>
-</form>
 <table>
 <!--    checkInTime, checkOutTime, duration, userId, vehicleId, parkingSpotId-->
     <tr>
-        <th>checkInTime</th>
-        <th>checkOutTime</th>
-        <th>duration</th>
-        <th>duration</th>
         <th>userId</th>
         <th>vehicleId</th>
         <th>parkingSpotId</th>
+        <th>checkInTime</th>
+        <th>checkOutTime</th>
+        <th>duration</th>
     </tr>
-    <% for(v of vehicle){ %>
+    <% for(l of log){ %>
         <tr>
-            <td><%= v.vehicleId %></td>
-            <td><%= v.vehicleNumber %></td>
-            <td><%= v.userId %></td>
-
+            <td><%= l.userId %></td>
+            <td><%= l.vehicleId %></td>
+            <td><%= l.parkingSpotId %></td>
+            <td><%= l.checkInTime %></td>
+            <td><%= l.checkOutTime %></td>
+            <% if(l.duration){ %>
+                <td><%= new Date(l.duration).getUTCHours() %>:<%= new Date(l.duration).getUTCMinutes() %>:<%= new Date(l.duration).getUTCSeconds() %></td>
+            <% } %>
         </tr>
     <% } %>
 </table>

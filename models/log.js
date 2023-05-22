@@ -1,32 +1,27 @@
 const sequelize = require("../db");
 const {DataTypes} = require("sequelize");
-const Log = sequelize.define('Log', {
+const User = require('../models/user')
+const {VehicleModel} = require("./vehicle");
+
+const LogModel = sequelize.define('Log', {
     parkingSpotId: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         references:{
             model: 'ParkingSpots',
             key: 'parkingSpotId'
         }
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: {
-            model: 'Users',
+            model: User,
             key: 'userId'
         },
     },
-    vehicleId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'Vehicles',
-            key: 'vehicleId'
-        }
-    },
+    vehicleId: DataTypes.UUID,
     checkInTime: DataTypes.DATE,
     checkOutTime: DataTypes.DATE,
     duration: DataTypes.TIME
-
-
 })
 
-module.exports = Log
+exports.LogModel = LogModel
