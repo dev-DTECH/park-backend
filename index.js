@@ -1,16 +1,8 @@
 const express = require('express')
 var cookies = require("cookie-parser");
 const app= express();
-const homeRouter = require('./routes/home')
-const authRouter = require('./routes/auth')
-const vehicleRouter = require('./routes/vehicle')
-const sequelize = require('./db')
-const User = require('./models/user')
-const {VehicleModel} = require("./models/vehicle");
+const sequelize = require('./utils/db')
 const {ParkingSpotModel} = require("./models/parkingSpot");
-const {logRouter} = require("./routes/log");
-const {LogModel} = require("./models/log");
-
 sequelize.sync(
     {force:true}
 )
@@ -30,14 +22,12 @@ const PORT = 8080
 app.use(express.json())
 app.use(cookies())
 app.use(express.urlencoded({extended:false}))
-
 app.set('view engine','ejs')
 
+app.use(require('./routes/webRoutes/screens'));
 
-app.use('/',homeRouter)
-app.use('/auth',authRouter)
-app.use('/vehicle',vehicleRouter)
-app.use('/log',logRouter)
+// requiring all routes
+require("./utils/allRoutes")(app);
 
 app.listen(PORT,()=>{
     console.log(`Live on http://localhost:${PORT}`)

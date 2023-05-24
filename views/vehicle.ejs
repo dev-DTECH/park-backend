@@ -13,12 +13,12 @@
     <tr>
         <td><a href="/">/</a></td>
         <td><a href="/auth">/auth</a></td>
-        <td><a href="/auth/logout">/auth/logout</a></td>
+        <td><a href="/v1/logout">/auth/logout</a></td>
         <td><a href="/vehicle">/vehicle</a></td>
         <td><a href="/log">/log</a></td>
     </tr>
 </table>
-<form action="/vehicle/add/" method="post">
+<form action="/v1/addVehicle/" method="post">
     <fieldset>
         <legend>Add Vehicle</legend>
         <label for="vehicle-number">Vehicle Number - </label><input type="text" id="vehicle-number" name="vehicleNumber"
@@ -32,7 +32,7 @@
 
             </select>
         </label>
-        <input type="submit" value="/vehicle/add">
+        <input type="submit" value="/v1/addVehicle/">
 
     </fieldset>
 </form>
@@ -49,9 +49,9 @@
             <td><%= v.vehicleNumber %></td>
             <td><%= v.userId %></td>
             <td>
-                <form action="/vehicle/delete" method="post">
+                <form action="/v1/deleteVehicle/" method="post">
                     <input type="hidden" name="vehicleId" value="<%= v.vehicleId %>">
-                    <input type="submit" value="/vehicle/delete">
+                    <input type="submit" value="/v1/deleteVehicle/">
                 </form>
             </td>
         </tr>

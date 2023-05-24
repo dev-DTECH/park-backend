@@ -12,12 +12,12 @@
     <tr>
         <td><a href="/">/</a></td>
         <td><a href="/auth">/auth</a></td>
-        <td><a href="/auth/logout">/auth/logout</a></td>
+        <td><a href="/v1/logout">/auth/logout</a></td>
         <td><a href="/vehicle">/vehicle</a></td>
         <td><a href="/log">/log</a></td>
     </tr>
 </table>
-<form action="/auth/login/" method="post">
+<form action="/v1/login/" method="post">
     <fieldset>
         <legend>Login</legend>
         <label for="login-ph">Mobile Number - </label><input type="tel" id="login-ph" name="mobileNumber" required><br/><br/>
@@ -26,7 +26,7 @@
     </fieldset>
 
 </form>
-<form action="/auth/register/" method="post">
+<form action="/v1/register/" method="post">
     <fieldset>
         <legend>Register</legend>
         <label for="register-name">Name - </label><input id="register-name" name="name" required><br/><br/>

@@ -10,7 +10,6 @@ exports.logController.get = async (req, res) => {
 exports.logController.checkIn = async (vehicleId, userId, parkingSpotId) => {
     console.error(parkingSpotId)
     const log = await LogModel.create({
-
         vehicleId: vehicleId,
         userId: userId,
         parkingSpotId: parkingSpotId,

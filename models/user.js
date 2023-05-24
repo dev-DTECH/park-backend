@@ -1,7 +1,7 @@
-const sequelize = require('../db')
+const sequelize = require('../utils/db')
 const {Sequelize, DataType, DataTypes} = require("sequelize");
 
-const User = sequelize.define('User', {
+const UserModel = sequelize.define('User', {
     userId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -11,4 +11,4 @@ const User = sequelize.define('User', {
     mobileNumber: DataTypes.STRING,
     password: DataTypes.STRING
 })
-module.exports = User
+exports.UserModel = UserModel

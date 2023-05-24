@@ -1,4 +1,4 @@
-const sequelize = require("../db");
+const sequelize = require("../utils/db");
 const {DataTypes} = require("sequelize");
 const ParkingSpotModel = sequelize.define('ParkingSpot',{
     parkingSpotId:{

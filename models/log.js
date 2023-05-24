@@ -1,7 +1,6 @@
-const sequelize = require("../db");
+const sequelize = require("../utils/db");
 const {DataTypes} = require("sequelize");
-const User = require('../models/user')
-const {VehicleModel} = require("./vehicle");
+const {UserModel} = require("./user");
 
 const LogModel = sequelize.define('Log', {
     parkingSpotId: {
@@ -14,7 +13,7 @@ const LogModel = sequelize.define('Log', {
     userId: {
         type: DataTypes.UUID,
         references: {
-            model: User,
+            model: UserModel,
             key: 'userId'
         },
     },
