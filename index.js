@@ -3,6 +3,7 @@ var cookies = require("cookie-parser");
 const app= express();
 const sequelize = require('./utils/db')
 const {ParkingSpotModel} = require("./models/parkingSpot");
+const {staticFiles} = require("./utils/staticFiles");
 sequelize.sync(
     // {force:true}
 )
@@ -22,6 +23,7 @@ const PORT = 8080
 app.use(express.json())
 app.use(cookies())
 app.use(express.urlencoded({extended:false}))
+staticFiles(app)
 app.set('view engine','ejs')
 
 app.use(require('./routes/webRoutes/screens'));
