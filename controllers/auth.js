@@ -33,29 +33,35 @@ exports.login = async (req, res, next) => {
 }
 
 exports.register = async (req, res) => {
-    const isUserModelRegistered = await UserModel.findOne({
-        where: {
-            mobileNumber: req.body.mobileNumber,
+    try{
+        console.log(req.body)
+        const isUserModelRegistered = await UserModel.findOne({
+            where: {
+                mobileNumber: req.body.mobileNumber,
+            }
+        })
+        if (isUserModelRegistered) {
+            return res.status(409).json({error: "UserModel already exist"})
         }
-    })
-    if (isUserModelRegistered) {
-        return res.status(409).json({error: "UserModel already exist"})
+        const salt = await bcrypt.genSalt(10);
+        const user = await UserModel.create({
+            name: req.body.name,
+            mobileNumber: req.body.mobileNumber,
+            password: await bcrypt.hash(req.body.password, salt)
+        })
+        const token = jwt.sign({
+            "userId": user.userId,
+            "mobileNumber": user.mobileNumber,
+            "name": user.name
+        }, process.env.ACCESS_TOKEN_SECRET);
+        res.cookie('token', token, {
+            httpOnly: true
+        })
+        res.redirect('/')
     }
-    const salt = await bcrypt.genSalt(10);
-    const user = await UserModel.create({
-        name: req.body.name,
-        mobileNumber: req.body.mobileNumber,
-        password: await bcrypt.hash(req.body.password, salt)
-    })
-    const token = jwt.sign({
-        "userId": user.userId,
-        "mobileNumber": user.mobileNumber,
-        "name": user.name
-    }, process.env.ACCESS_TOKEN_SECRET);
-    res.cookie('token', token, {
-        httpOnly: true
-    })
-    res.redirect('/')
+    catch(e){
+        console.error(e)
+    }
 }
 exports.logout = async (req, res) => {
     res.clearCookie("token");

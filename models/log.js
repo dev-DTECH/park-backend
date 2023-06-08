@@ -20,7 +20,7 @@ const LogModel = sequelize.define('Log', {
     vehicleId: DataTypes.UUID,
     checkInTime: DataTypes.DATE,
     checkOutTime: DataTypes.DATE,
-    duration: DataTypes.TIME
+    duration: DataTypes.INTEGER
 })
 
 exports.LogModel = LogModel

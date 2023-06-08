@@ -22,7 +22,7 @@ sequelize.sync(
 const PORT = 8080
 app.use(express.json())
 app.use(cookies())
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:true}))
 staticFiles(app)
 app.set('view engine','ejs')
 

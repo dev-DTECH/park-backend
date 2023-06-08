@@ -2,6 +2,8 @@ const {VehicleModel} = require("../models/vehicle");
 const {logController} = require("./log");
 
 exports.addVehicle = async (req, res) => {
+    try{
+
     const isVehicleParked = await VehicleModel.findOne({
         where:{
             vehicleNumber: req.body.vehicleNumber
@@ -14,6 +16,10 @@ exports.addVehicle = async (req, res) => {
     })
     logController.checkIn(vehicle.vehicleId,req.user.userId,req.body.parkingSpotId)
     return res.redirect('/vehicle/')
+    }
+    catch (e) {
+        console.error(e)
+    }
 }
 exports.deleteVehicle = async (req, res) => {
     await VehicleModel.destroy({

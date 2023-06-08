@@ -35,6 +35,7 @@
             <td><%= l.parkingSpotId %></td>
             <td><%= l.checkInTime %></td>
             <td><%= l.checkOutTime %></td>
+<!--            <td><%= l.duration %></td>-->
             <% if(l.duration){ %>
                 <td><%= new Date(l.duration).getUTCHours() %>:<%= new Date(l.duration).getUTCMinutes() %>:<%= new Date(l.duration).getUTCSeconds() %></td>
             <% } %>

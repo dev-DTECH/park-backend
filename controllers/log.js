@@ -1,9 +1,9 @@
 const {LogModel} = require("../models/log");
-exports.logController ={}
+exports.logController = {}
 
 exports.logController.get = async (req, res) => {
     const log = await LogModel.findAll()
-    res.render('log',{
+    res.render('log', {
         log: log,
     })
 }
@@ -17,12 +17,16 @@ exports.logController.checkIn = async (vehicleId, userId, parkingSpotId) => {
     })
 }
 exports.logController.checkOut = async (vehicleId) => {
-    const log = await LogModel.findOne({
-        where:{
-            vehicleId:vehicleId
-        }
-    })
-    log.checkOutTime = new Date()
-    log.duration = log.checkOutTime - log.checkInTime
-    await log.save()
+    try {
+        const log = await LogModel.findOne({
+            where: {
+                vehicleId: vehicleId
+            }
+        })
+        log.checkOutTime = new Date()
+        log.duration = (log.checkOutTime - log.checkInTime)
+        await log.save()
+    } catch (e) {
+        console.error(e)
+    }
 }
