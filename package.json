@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dotenv": "^16.0.3",
     "nodemon": "^2.0.22"
   },
   "dependencies": {
@@ -26,6 +25,7 @@
     "pg": "^8.11.0",
     "sequelize": "^6.31.1",
     "sequelize-cli": "^6.6.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "dotenv": "^16.0.3"
   }
 }
