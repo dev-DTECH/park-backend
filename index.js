@@ -19,7 +19,7 @@ sequelize.sync(
 // .catch(err => console.log(err))
 
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080
 app.use(express.json())
 app.use(cookies())
 app.use(express.urlencoded({extended:true}))
